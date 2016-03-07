@@ -19,6 +19,7 @@
 		016855D51C8C1572003F7468 /* UIViewController+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 016855D41C8C1572003F7468 /* UIViewController+Common.m */; };
 		017701321C8C65B400923C2C /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 017701301C8C65B400923C2C /* VideoTableViewCell.m */; };
 		017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017701311C8C65B400923C2C /* VideoTableViewCell.xib */; };
+		0183601C1C8D17DE0074F372 /* Video.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0183601B1C8D17DD0074F372 /* Video.plist */; };
 		0187950F1C8AB5B8003F3EC5 /* TimeStamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187950E1C8AB5B8003F3EC5 /* TimeStamp.m */; };
 		018795151C8AD817003F3EC5 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 018795141C8AD817003F3EC5 /* LeftView.m */; };
 		018795161C8AE887003F3EC5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DC31C883AEC00554FD8 /* MainViewController.m */; };
@@ -55,6 +56,7 @@
 		0177012F1C8C65B400923C2C /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
 		017701301C8C65B400923C2C /* VideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
 		017701311C8C65B400923C2C /* VideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
+		0183601B1C8D17DD0074F372 /* Video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Video.plist; sourceTree = "<group>"; };
 		0187950D1C8AB5B8003F3EC5 /* TimeStamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeStamp.h; sourceTree = "<group>"; };
 		0187950E1C8AB5B8003F3EC5 /* TimeStamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStamp.m; sourceTree = "<group>"; };
 		018795131C8AD817003F3EC5 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
@@ -127,7 +129,6 @@
 		01A26D8D1C88258000554FD8 /* CrazyNews */ = {
 			isa = PBXGroup;
 			children = (
-				01A26DC11C883AA100554FD8 /* Library */,
 				01A26DBC1C883A9200554FD8 /* classes */,
 				01A26D911C88258000554FD8 /* AppDelegate.h */,
 				01A26D921C88258000554FD8 /* AppDelegate.m */,
@@ -139,6 +140,7 @@
 				0187950E1C8AB5B8003F3EC5 /* TimeStamp.m */,
 				016855D31C8C1572003F7468 /* UIViewController+Common.h */,
 				016855D41C8C1572003F7468 /* UIViewController+Common.m */,
+				01A26DC11C883AA100554FD8 /* Library */,
 				01A26D941C88258000554FD8 /* Assets.xcassets */,
 				01A26D961C88258000554FD8 /* LaunchScreen.storyboard */,
 				01A26D991C88258000554FD8 /* Info.plist */,
@@ -190,6 +192,7 @@
 				01261AFC1C89229E004AE8A0 /* Main.plist */,
 				01261AFE1C892B7A004AE8A0 /* MainModel.h */,
 				01261AFF1C892B7A004AE8A0 /* MainModel.m */,
+				0183601B1C8D17DD0074F372 /* Video.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */,
 				01A26DC61C883CFA00554FD8 /* Main.storyboard in Resources */,
 				0121AC401C8869DC0075515D /* blueArrowDown.png in Resources */,
+				0183601C1C8D17DE0074F372 /* Video.plist in Resources */,
 				01A26D951C88258000554FD8 /* Assets.xcassets in Resources */,
 				01A26D981C88258000554FD8 /* LaunchScreen.storyboard in Resources */,
 				01261AFD1C89229E004AE8A0 /* Main.plist in Resources */,
@@ -447,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -484,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -500,6 +504,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CrazyNews/PCH.pch";
 				INFOPLIST_FILE = CrazyNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mangoinc.CrazyNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -515,6 +520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CrazyNews/PCH.pch";
 				INFOPLIST_FILE = CrazyNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mangoinc.CrazyNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";

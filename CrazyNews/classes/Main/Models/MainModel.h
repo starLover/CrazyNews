@@ -44,6 +44,11 @@
 @property(nonatomic, copy) NSString *avatar;
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *source_name;
+@property(nonatomic, copy) NSString *play_count_string;
+@property(nonatomic, copy) NSString *first_url;
+@property(nonatomic, copy) NSString *play_time;
+@property(nonatomic, copy) NSString *comment_count;
+
 
 + (MainModel *)getDictionary:(NSDictionary *)dic;
 

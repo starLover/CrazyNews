@@ -16,12 +16,16 @@
 #import "DetailViewController.h"
 #import "LeftView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "VideoTableViewCell.h"
+
 
 
 @interface MainViewController ()<PullingRefreshTableViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     NSInteger stampTime;
+    NSInteger stampTime1;
     BOOL refresh;
+
 }
 @property(nonatomic, strong) PullingRefreshTableView *tableView;
 @property(nonatomic, strong) UIScrollView *scrollView;
@@ -33,6 +37,7 @@
 @property(nonatomic, strong) LeftView *leftView;
 @property(nonatomic, strong) UIView *blackView;
 @property(nonatomic, strong) NSMutableArray *videoArray;
+
 @end
 
 @implementation MainViewController
@@ -42,15 +47,10 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     [self.view addSubview:self.tableView];
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.extendedLayoutIncludesOpaqueBars = NO;
-//    self.modalPresentationCapturesStatusBarAppearance = NO;
-//    [self.view addSubview:self.leftView];
-    //左侧栏
-    
     
     refresh = NO;
     stampTime = [TimeStamp getNewStamp];
+    stampTime1 = stampTime;
     //导航栏左按钮
     UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_chengshi"] style:UIBarButtonItemStylePlain target:self action:@selector(newView:)];
     //导航栏空白按钮
@@ -59,51 +59,81 @@
     [emptyBtn setTitle:@"暴走日报" forState:UIControlStateNormal];
     [emptyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIBarButtonItem *empty = [[UIBarButtonItem alloc] initWithCustomView:emptyBtn];
-        self.navigationItem.leftBarButtonItems = @[leftBarBtn, empty];
+    self.navigationItem.leftBarButtonItems = @[leftBarBtn, empty];
     //segmentcontrol
     //推荐 视频
     [self.view addSubview:self.segment];
     
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellIdentifier"];
-    //
+    
     [self request];
     [self.tableView launchRefreshing];
 }
 #pragma mark     ------------ UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    cell.mainModel = self.dataArray[indexPath.row];
+    if (self.segment.selectedSegmentIndex == 0) {
+        MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+        cell.mainModel = self.dataArray[indexPath.row];
+        return cell;
+    }
+    
+    VideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoCellIdentifier"];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoTableViewCell" owner:nil options:nil] firstObject];
+        cell.mainModel = self.videoArray[indexPath.row];
+    }
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    if (self.segment.selectedSegmentIndex == 0) {
+        return self.dataArray.count;
+    }
+    return self.videoArray.count;
 }
 #pragma mark     ------------ UITableViewDelegate
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.segment.selectedSegmentIndex == 0) {
+        
+    } else {
+           }
+}
 
 
 #pragma mark     ------------ PullingRefreshTableViewDelegate
 //下拉刷新
 - (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
     refresh = NO;
-    [self performSelector:@selector(request) withObject:nil afterDelay:1.f];
+    if (self.segment.selectedSegmentIndex == 0) {
+        [self performSelector:@selector(request) withObject:nil afterDelay:1.f];
+    } else {
+        [self performSelector:@selector(videoRequest) withObject:nil afterDelay:1.f];
+    }
 }
 //上拉加载
 - (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView{
     refresh = YES;
-    if (stampTime > 3600 * 10) {
-        stampTime -= 3600 * 10;
+    //如果选择第二个segment,网络请求改变
+    if (self.segment.selectedSegmentIndex == 0) {
+        if (stampTime > 3600 * 10) {
+            stampTime -= 3600 * 10;
+        }
+        [self performSelector:@selector(request) withObject:nil afterDelay:1.f];
+    } else {
+        if (stampTime1 > 3600 * 10) {
+            stampTime1 -= 3600 * 10;
+        }
+        [self performSelector:@selector(videoRequest) withObject:nil afterDelay:1.f];
     }
-    [self performSelector:@selector(request) withObject:nil afterDelay:1.f];
+    
 }
 #pragma mark     -------------    自定义加载方法
 - (void)configHeadView{
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenWidth / 2 + 50)];
     self.tableView.tableHeaderView = headView;
     [headView addSubview:self.scrollView];
-
+    
     for (int i = 0; i < self.topArray.count; i++) {
         //轮播图图片
         UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth * i, 0, kScreenWidth, kScreenWidth / 2 + 50)];
@@ -130,10 +160,17 @@
 #pragma mark ------------   ButtonAction
 - (void)newView:(UIBarButtonItem *)btn{
     self.leftView = [[LeftView alloc] init];
-    
 }
 - (void)segmentCtrlValuechange:(VOSegmentedControl *)segment{
-    
+    if (self.segment.selectedSegmentIndex == 0) {
+        [self request];
+        self.tableView.rowHeight = 120;
+    } else {
+        [self videoRequest];
+        self.tableView.rowHeight = 273;
+        self.tableView.tableHeaderView = nil;
+    }
+    [self.tableView reloadData];
 }
 - (void)headerAction:(UIButton *)btn{
     DetailViewController *detailVC = [[DetailViewController alloc] init];
@@ -213,20 +250,13 @@
     }
     return;
 }
-//- (LeftView *)leftView{
-//    if (_leftView == nil) {
-//        self.leftView = [[LeftView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth - 100, kScreenHeight)];
-//    }
-//    return _leftView;
-//}
-//- (UIView *)blackView{
-//    if (_blackView == nil) {
-//        self.blackView = [[UIView alloc] initWithFrame:CGRectMake(-kScreenWidth, 0, kScreenWidth, kScreenHeight)];
-//        self.blackView.backgroundColor = [UIColor blackColor];
-//        self.blackView.alpha = 0.0;
-//    }
-//    return _blackView;
-//}
+- (NSMutableArray *)videoArray{
+    if (_videoArray == nil) {
+        self.videoArray = [NSMutableArray new];
+    }
+    return _videoArray;
+}
+#pragma mark    -----------    网络请求
 - (void)request{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
@@ -256,7 +286,7 @@
             [self.dataArray addObject:mainModel];
         }
         [self.tableView tableViewDidFinishedLoading];
-//        self.tableView.reachedTheEnd = NO;
+        //        self.tableView.reachedTheEnd = NO;
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -268,25 +298,28 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     NSString *urlString = kVideo;
     if (refresh) {
-        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", stampTime]];
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", stampTime1]];
     } else{
-        if (self.dataArray.count > 0) {
-            [self.dataArray removeAllObjects];
+        if (self.videoArray.count > 0) {
+            [self.videoArray removeAllObjects];
         }
     }
     [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
+        NSDictionary *responseDic = responseObject;
+        NSArray *videoArray = responseDic[@"videos"];
+        for (NSDictionary *dic in videoArray) {
+            MainModel *model = [MainModel getDictionary:dic];
+            [self.videoArray addObject:model];
+        }
+        [self.tableView tableViewDidFinishedLoading];
+        [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
     }];
 }
 #pragma mark      -------------   轮播图实现
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    
-//}
 - (void)pageControlAction{
     NSInteger pageNumber = self.pageControl.currentPage;
     CGFloat offsetx = pageNumber * kScreenWidth;
@@ -332,13 +365,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

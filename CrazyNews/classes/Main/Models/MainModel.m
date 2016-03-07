@@ -42,8 +42,12 @@
         _video_file_url = dic[@"video_file_url"];
         _video_image_url = dic[@"video_image_url"];
         _visiable = dic[@"visiable"];
-        _vote_count = dic[@"vote_count"];
+        _vote_count = [dic[@"vote_count"] stringValue];
         _source_name = dic[@"source_name"];
+        _play_time = dic[@"_play_time"];
+        _play_count_string = dic[@"play_count_string"] ;
+        _first_url = dic[@"first_url"];
+        _comment_count = dic[@"_comment_count"];
         //数组
         _recommenders = dic[@"recommenders"];
         if (_recommenders.count > 0) {
