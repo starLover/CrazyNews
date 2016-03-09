@@ -75,7 +75,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.segment.selectedSegmentIndex == 0) {
         MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-        cell.mainModel = self.dataArray[indexPath.row];
+        if (indexPath.row <= self.dataArray.count) {
+            cell.mainModel = self.dataArray[indexPath.row];
+        }
         return cell;
     }
     

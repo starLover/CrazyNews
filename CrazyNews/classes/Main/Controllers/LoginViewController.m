@@ -7,9 +7,15 @@
 //
 
 #import "LoginViewController.h"
+#import <BmobSDK/Bmob.h>
+#import "CreateViewController.h"
 
 @interface LoginViewController ()<pushViewControllerDelegate>
+
 @property(nonatomic, strong) UITextField *nametf;
+@property(nonatomic, strong) UITextField *passtf;
+@property(nonatomic, strong) UIAlertController *alertController;
+@property(nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation LoginViewController
@@ -31,6 +37,12 @@
     UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = leftBarBtn;
     [self configView];
+    
+    BmobUser *user = [BmobUser getCurrentUser];
+    if (user) {
+        self.nametf.text = [user objectForKey:@"username"];
+        self.passtf.text = [user objectForKey:@"password"];
+    }
 }
 
 - (void)configView{
@@ -40,12 +52,8 @@
     [headBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     headBtn.layer.cornerRadius = 50;
     headBtn.clipsToBounds = YES;
-    [headBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
+    [headBtn addTarget:self action:@selector(loginAction1) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:headBtn];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((kScreenWidth - 100) / 2, 150, 100, 30)];
-    label.text = @"点击登录";
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
     
     NSArray *array = @[@"0收藏", @"0评论", @"0阅读"];
     for (int i = 0; i < 3; i++) {
@@ -66,26 +74,67 @@
     
     UILabel *passlabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 270, 80, 44)];
     passlabel.text = @"密码";
-    UITextField *passtf = [[UITextField alloc] initWithFrame:CGRectMake(90, 270, kScreenWidth - 100, 44)];
-    passtf.placeholder = @"请输入密码";
-    passtf.secureTextEntry = YES;
-    passtf.borderStyle = UITextBorderStyleRoundedRect;
+    self.passtf = [[UITextField alloc] initWithFrame:CGRectMake(90, 270, kScreenWidth - 100, 44)];
+    self.passtf.placeholder = @"请输入密码";
+    self.passtf.secureTextEntry = YES;
+    self.passtf.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:passlabel];
-    [self.view addSubview:passtf];
-    
+    [self.view addSubview:self.passtf];
+    //注册
+    UIButton *createBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    createBtn.frame = CGRectMake(kScreenWidth - 100, 430, 60, 44);
+    [createBtn setTitle:@"注册" forState:UIControlStateNormal];
+    createBtn.backgroundColor = [UIColor blueColor];
+    createBtn.layer.borderWidth = 1;
+    createBtn.layer.cornerRadius = 5;
+    [createBtn addTarget:self action:@selector(createAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:createBtn];
+    //登录
+    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    loginBtn.frame = CGRectMake(50, 370, kScreenWidth - 100, 44);
+    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    loginBtn.backgroundColor = [UIColor redColor];
+    [loginBtn addTarget:self action:@selector(loginAction1) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginBtn];
 }
-
+//注册
+- (void)createAction{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Create" bundle:nil];
+    CreateViewController *createVC = [storyboard instantiateViewControllerWithIdentifier:@"CreateView"];
+    [self.navigationController pushViewController:createVC animated:YES];
+}
 
 //登陆
-- (void)loginAction{
-    
+- (void)loginAction1{
+    [BmobUser loginInbackgroundWithAccount:self.nametf.text andPassword:self.passtf.text block:^(BmobUser *user, NSError *error) {
+        if (user) {
+             self.alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"登录成功 \n\n3秒后返回到主界面" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [self.alertController addAction:action];
+            [self presentViewController:self.alertController animated:YES completion:nil];
+            if (self.timer == nil) {
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(removeAlertView) userInfo:nil repeats:NO];
+            }
+        } else {
+            [self addAlertController:@"用户名或密码错误"];
+        }
+    }];
 }
+
+
+
+
 - (void)getWitchViewController:(UIViewController *)VC{
     [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark      ----------     返回方法
 - (void)backToMain{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+//移除提示框
+- (void)removeAlertView{
+    [self.alertController dismissViewControllerAnimated:NO completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 //回收键盘

@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "ListViewController.h"
 #import "LoginViewController.h"
+#import "SetViewController.h"
 
 
 
@@ -150,6 +151,9 @@
             break;
         case 5:
         {
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Set" bundle:nil];
+            SetViewController *setVC = [story instantiateViewControllerWithIdentifier:@"Set"];
+            [self.delegate getWitchViewController:setVC];
         }
             break;
         case 6:

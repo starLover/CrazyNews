@@ -32,6 +32,11 @@
 		01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCB1C88525B00554FD8 /* VOIndicatorAnimation.m */; };
 		01A26DD21C88525B00554FD8 /* VOSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCD1C88525B00554FD8 /* VOSegment.m */; };
 		01A26DD31C88525B00554FD8 /* VOSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCF1C88525B00554FD8 /* VOSegmentedControl.m */; };
+		01BCE4B11C8FA53700CD763F /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BCE4B01C8FA53700CD763F /* CreateViewController.m */; };
+		01BCE4B31C8FA56400CD763F /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BCE4B21C8FA56400CD763F /* Create.storyboard */; };
+		01BCE4B51C90428000CD763F /* Set.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BCE4B41C90427F00CD763F /* Set.storyboard */; };
+		01BCE4B81C90432200CD763F /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BCE4B71C90432200CD763F /* SetViewController.m */; };
+		01BCE4BA1C90597B00CD763F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BCE4B91C90597B00CD763F /* MessageUI.framework */; };
 		01EDD8491C8E6217000DC693 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD8481C8E6217000DC693 /* TopViewController.m */; };
 		01EDD84B1C8EBBA2000DC693 /* read.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01EDD84A1C8EBBA2000DC693 /* read.plist */; };
 		01EDD84E1C8EC17F000DC693 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD84D1C8EC17F000DC693 /* ListViewController.m */; };
@@ -86,6 +91,13 @@
 		01A26DCE1C88525B00554FD8 /* VOSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegmentedControl.h; sourceTree = "<group>"; };
 		01A26DCF1C88525B00554FD8 /* VOSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSegmentedControl.m; sourceTree = "<group>"; };
 		01A26DD41C88544800554FD8 /* PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCH.pch; sourceTree = "<group>"; };
+		01BCE4AF1C8FA53700CD763F /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		01BCE4B01C8FA53700CD763F /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		01BCE4B21C8FA56400CD763F /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
+		01BCE4B41C90427F00CD763F /* Set.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Set.storyboard; sourceTree = "<group>"; };
+		01BCE4B61C90432200CD763F /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		01BCE4B71C90432200CD763F /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		01BCE4B91C90597B00CD763F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		01EDD8471C8E6217000DC693 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
 		01EDD8481C8E6217000DC693 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		01EDD84A1C8EBBA2000DC693 /* read.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = read.plist; sourceTree = "<group>"; };
@@ -106,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BCE4BA1C90597B00CD763F /* MessageUI.framework in Frameworks */,
 				4B8DE210D151AAFB86F31CA8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +217,10 @@
 				01EDD84D1C8EC17F000DC693 /* ListViewController.m */,
 				01EDD8541C8EE5B0000DC693 /* LoginViewController.h */,
 				01EDD8551C8EE5B0000DC693 /* LoginViewController.m */,
+				01BCE4AF1C8FA53700CD763F /* CreateViewController.h */,
+				01BCE4B01C8FA53700CD763F /* CreateViewController.m */,
+				01BCE4B61C90432200CD763F /* SetViewController.h */,
+				01BCE4B71C90432200CD763F /* SetViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -235,6 +252,8 @@
 				01EDD84F1C8ECD32000DC693 /* ListTableViewCell.h */,
 				01EDD8501C8ECD32000DC693 /* ListTableViewCell.m */,
 				01EDD8511C8ECD32000DC693 /* ListTableViewCell.xib */,
+				01BCE4B21C8FA56400CD763F /* Create.storyboard */,
+				01BCE4B41C90427F00CD763F /* Set.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +285,7 @@
 		7A96A46D55CD00CDD5516AF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01BCE4B91C90597B00CD763F /* MessageUI.framework */,
 				4B024435668ACC3395C0E03F /* libPods.a */,
 			);
 			name = Frameworks;
@@ -345,12 +365,14 @@
 				0121AC491C886CAC0075515D /* MainTableViewCell.xib in Resources */,
 				017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */,
 				01A26DC61C883CFA00554FD8 /* Main.storyboard in Resources */,
+				01BCE4B31C8FA56400CD763F /* Create.storyboard in Resources */,
 				0121AC401C8869DC0075515D /* blueArrowDown.png in Resources */,
 				0183601C1C8D17DE0074F372 /* Video.plist in Resources */,
 				01A26D951C88258000554FD8 /* Assets.xcassets in Resources */,
 				01A26D981C88258000554FD8 /* LaunchScreen.storyboard in Resources */,
 				01EDD8531C8ECD32000DC693 /* ListTableViewCell.xib in Resources */,
 				01261AFD1C89229E004AE8A0 /* Main.plist in Resources */,
+				01BCE4B51C90428000CD763F /* Set.storyboard in Resources */,
 				0121AC3F1C8869DC0075515D /* blueArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +449,9 @@
 				01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */,
 				01EDD8521C8ECD32000DC693 /* ListTableViewCell.m in Sources */,
 				01A26D901C88258000554FD8 /* main.m in Sources */,
+				01BCE4B11C8FA53700CD763F /* CreateViewController.m in Sources */,
 				01A26DD31C88525B00554FD8 /* VOSegmentedControl.m in Sources */,
+				01BCE4B81C90432200CD763F /* SetViewController.m in Sources */,
 				016855D51C8C1572003F7468 /* UIViewController+Common.m in Sources */,
 				01261B071C89AF75004AE8A0 /* DetailViewController.m in Sources */,
 			);
@@ -538,6 +562,56 @@
 				INFOPLIST_FILE = CrazyNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"SDWebImage\"",
+					"-l\"WeChatSDK\"",
+					"-l\"WeiboSDK\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-l\"z.1.2.5\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"BmobSDK\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JavaScriptCore\"",
+					"-framework",
+					"\"MOBFoundation\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"ShareSDK\"",
+					"-framework",
+					"\"ShareSDKConnector\"",
+					"-framework",
+					"\"ShareSDKExtension\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TencentOpenAPI\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mangoinc.CrazyNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -554,6 +628,56 @@
 				INFOPLIST_FILE = CrazyNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"SDWebImage\"",
+					"-l\"WeChatSDK\"",
+					"-l\"WeiboSDK\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-l\"z.1.2.5\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"BmobSDK\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JavaScriptCore\"",
+					"-framework",
+					"\"MOBFoundation\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"ShareSDK\"",
+					"-framework",
+					"\"ShareSDKConnector\"",
+					"-framework",
+					"\"ShareSDKExtension\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TencentOpenAPI\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mangoinc.CrazyNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

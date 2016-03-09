@@ -11,5 +11,5 @@
 @interface UIViewController (Common)
 
 - (void)showBackButton;
-
+- (void)addAlertController:(NSString *)title;
 @end

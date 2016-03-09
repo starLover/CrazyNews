@@ -73,25 +73,6 @@
         [self.readArray removeAllObjects];
     }
     [self request];
-//    switch (segment.selectedSegmentIndex) {
-//        case 1:
-//        {
-//        
-//            
-//        }
-//            break;
-//        case 2:
-//        {
-//        }
-//            break;
-//        case 3:
-//        {
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
     
 }
 - (void)newView:(UIBarButtonItem *)btn{

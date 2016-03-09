@@ -15,18 +15,32 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - BmobSDK (1.6.6)
+  - MOBFoundation (1.5.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - ShareSDK3 (3.2.0):
+    - ShareSDK3/ShareSDK (= 3.2.0)
+  - ShareSDK3/ShareSDK (3.2.0)
+  - ShareSDK3/ShareSDKPlatforms/QQ (3.2.0)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.2.0)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.2.0)
 
 DEPENDENCIES:
   - AFNetworking
   - BmobSDK (~> 1.6.6)
+  - MOBFoundation
   - SDWebImage
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/QQ
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo
+  - ShareSDK3/ShareSDKPlatforms/WeChat
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BmobSDK: c896d4ff3986f2b4fc8406fb2b801230f7419878
+  MOBFoundation: 38b70ebfd8835884aa36bd4ef53721ad9a2f0e2c
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  ShareSDK3: 2987b2c38210299d8c3259fff65740f59691a688
 
 COCOAPODS: 0.39.0

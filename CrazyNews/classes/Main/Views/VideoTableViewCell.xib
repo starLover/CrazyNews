@@ -51,6 +51,9 @@
                         <rect key="frame" x="328" y="234" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="分享" image="btn_article_share"/>
+                        <connections>
+                            <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tS3-CH-OeJ"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Kt-A6-KYo">
                         <rect key="frame" x="162" y="78" width="50" height="50"/>
@@ -74,7 +77,6 @@
                 <outlet property="commentBtn" destination="UE5-wh-ddV" id="cL9-As-Hiz"/>
                 <outlet property="goodBtn" destination="bGw-X4-q2z" id="HNp-ZU-0oG"/>
                 <outlet property="playCount" destination="dES-Li-gm3" id="D4u-yE-fFm"/>
-                <outlet property="shareBtn" destination="e3M-Hj-LtM" id="BDI-1s-hMk"/>
                 <outlet property="timeLength" destination="Elr-hV-OrZ" id="Vzn-0R-nQy"/>
                 <outlet property="titleLabel" destination="Elr-hV-OrZ" id="gMQ-a1-kLH"/>
             </connections>
