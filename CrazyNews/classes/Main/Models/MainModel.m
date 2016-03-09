@@ -47,7 +47,9 @@
         _play_time = dic[@"_play_time"];
         _play_count_string = dic[@"play_count_string"] ;
         _first_url = dic[@"first_url"];
-        _comment_count = dic[@"_comment_count"];
+        _comment_count = dic[@"comment_count"];
+        _description1 = dic[@"description"];
+        _name = dic[@"name"];
         //数组
         _recommenders = dic[@"recommenders"];
         if (_recommenders.count > 0) {

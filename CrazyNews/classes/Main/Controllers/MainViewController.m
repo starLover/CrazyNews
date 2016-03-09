@@ -20,7 +20,7 @@
 
 
 
-@interface MainViewController ()<PullingRefreshTableViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController ()<PullingRefreshTableViewDelegate, UITableViewDelegate, UITableViewDataSource, pushViewControllerDelegate>
 {
     NSInteger stampTime;
     NSInteger stampTime1;
@@ -47,15 +47,17 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     [self.view addSubview:self.tableView];
+    //推出视图
     
     refresh = NO;
     stampTime = [TimeStamp getNewStamp];
     stampTime1 = stampTime;
     //导航栏左按钮
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_chengshi"] style:UIBarButtonItemStylePlain target:self action:@selector(newView:)];
+    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_home_menu_nor"] style:UIBarButtonItemStylePlain target:self action:@selector(newView:)];
     //导航栏空白按钮
     UIButton *emptyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     emptyBtn.frame = CGRectMake(0, 0, 100, 44);
+    emptyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
     [emptyBtn setTitle:@"暴走日报" forState:UIControlStateNormal];
     [emptyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIBarButtonItem *empty = [[UIBarButtonItem alloc] initWithCustomView:emptyBtn];
@@ -66,8 +68,6 @@
     
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellIdentifier"];
-    
-    [self request];
     [self.tableView launchRefreshing];
 }
 #pragma mark     ------------ UITableViewDataSource
@@ -82,7 +82,9 @@
     VideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoCellIdentifier"];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoTableViewCell" owner:nil options:nil] firstObject];
-        cell.mainModel = self.videoArray[indexPath.row];
+        if (indexPath.row <= self.videoArray.count) {
+            cell.mainModel = self.videoArray[indexPath.row];
+        }
     }
     return cell;
 }
@@ -95,7 +97,14 @@
 #pragma mark     ------------ UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.segment.selectedSegmentIndex == 0) {
-        
+        MainModel *model = self.dataArray[indexPath.row];
+        DetailViewController *detailVC = [[DetailViewController alloc] init];
+        if (model.share_url) {
+            detailVC.urlString = model.share_url;
+        } else {
+            detailVC.urlString = model.link;
+        }
+        [self.navigationController pushViewController:detailVC animated:YES];
     } else {
            }
 }
@@ -158,19 +167,24 @@
     [headView addSubview:self.pageControl];
 }
 #pragma mark ------------   ButtonAction
+//推出侧边栏方法
 - (void)newView:(UIBarButtonItem *)btn{
     self.leftView = [[LeftView alloc] init];
+    self.leftView.delegate = self;
+}
+//代理方法
+- (void)getWitchViewController:(UIViewController *)VC{
+    [self.navigationController pushViewController:VC animated:YES];
 }
 - (void)segmentCtrlValuechange:(VOSegmentedControl *)segment{
     if (self.segment.selectedSegmentIndex == 0) {
-        [self request];
         self.tableView.rowHeight = 120;
+        [self request];
     } else {
-        [self videoRequest];
         self.tableView.rowHeight = 273;
         self.tableView.tableHeaderView = nil;
+        [self videoRequest];
     }
-    [self.tableView reloadData];
 }
 - (void)headerAction:(UIButton *)btn{
     DetailViewController *detailVC = [[DetailViewController alloc] init];

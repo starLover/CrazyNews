@@ -32,6 +32,12 @@
 		01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCB1C88525B00554FD8 /* VOIndicatorAnimation.m */; };
 		01A26DD21C88525B00554FD8 /* VOSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCD1C88525B00554FD8 /* VOSegment.m */; };
 		01A26DD31C88525B00554FD8 /* VOSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DCF1C88525B00554FD8 /* VOSegmentedControl.m */; };
+		01EDD8491C8E6217000DC693 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD8481C8E6217000DC693 /* TopViewController.m */; };
+		01EDD84B1C8EBBA2000DC693 /* read.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01EDD84A1C8EBBA2000DC693 /* read.plist */; };
+		01EDD84E1C8EC17F000DC693 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD84D1C8EC17F000DC693 /* ListViewController.m */; };
+		01EDD8521C8ECD32000DC693 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD8501C8ECD32000DC693 /* ListTableViewCell.m */; };
+		01EDD8531C8ECD32000DC693 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01EDD8511C8ECD32000DC693 /* ListTableViewCell.xib */; };
+		01EDD8561C8EE5B0000DC693 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD8551C8EE5B0000DC693 /* LoginViewController.m */; };
 		4B8DE210D151AAFB86F31CA8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B024435668ACC3395C0E03F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +86,16 @@
 		01A26DCE1C88525B00554FD8 /* VOSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegmentedControl.h; sourceTree = "<group>"; };
 		01A26DCF1C88525B00554FD8 /* VOSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSegmentedControl.m; sourceTree = "<group>"; };
 		01A26DD41C88544800554FD8 /* PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCH.pch; sourceTree = "<group>"; };
+		01EDD8471C8E6217000DC693 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
+		01EDD8481C8E6217000DC693 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
+		01EDD84A1C8EBBA2000DC693 /* read.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = read.plist; sourceTree = "<group>"; };
+		01EDD84C1C8EC17F000DC693 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		01EDD84D1C8EC17F000DC693 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		01EDD84F1C8ECD32000DC693 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
+		01EDD8501C8ECD32000DC693 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
+		01EDD8511C8ECD32000DC693 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		01EDD8541C8EE5B0000DC693 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		01EDD8551C8EE5B0000DC693 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		24348028020EFC0413757830 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4B024435668ACC3395C0E03F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA29486D4E0EACA6D03B1060 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +198,12 @@
 				01A26DC31C883AEC00554FD8 /* MainViewController.m */,
 				01261B051C89AF75004AE8A0 /* DetailViewController.h */,
 				01261B061C89AF75004AE8A0 /* DetailViewController.m */,
+				01EDD8471C8E6217000DC693 /* TopViewController.h */,
+				01EDD8481C8E6217000DC693 /* TopViewController.m */,
+				01EDD84C1C8EC17F000DC693 /* ListViewController.h */,
+				01EDD84D1C8EC17F000DC693 /* ListViewController.m */,
+				01EDD8541C8EE5B0000DC693 /* LoginViewController.h */,
+				01EDD8551C8EE5B0000DC693 /* LoginViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -193,6 +215,7 @@
 				01261AFE1C892B7A004AE8A0 /* MainModel.h */,
 				01261AFF1C892B7A004AE8A0 /* MainModel.m */,
 				0183601B1C8D17DD0074F372 /* Video.plist */,
+				01EDD84A1C8EBBA2000DC693 /* read.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,6 +232,9 @@
 				017701311C8C65B400923C2C /* VideoTableViewCell.xib */,
 				018795131C8AD817003F3EC5 /* LeftView.h */,
 				018795141C8AD817003F3EC5 /* LeftView.m */,
+				01EDD84F1C8ECD32000DC693 /* ListTableViewCell.h */,
+				01EDD8501C8ECD32000DC693 /* ListTableViewCell.m */,
+				01EDD8511C8ECD32000DC693 /* ListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EDD84B1C8EBBA2000DC693 /* read.plist in Resources */,
 				0121AC491C886CAC0075515D /* MainTableViewCell.xib in Resources */,
 				017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */,
 				01A26DC61C883CFA00554FD8 /* Main.storyboard in Resources */,
@@ -322,6 +349,7 @@
 				0183601C1C8D17DE0074F372 /* Video.plist in Resources */,
 				01A26D951C88258000554FD8 /* Assets.xcassets in Resources */,
 				01A26D981C88258000554FD8 /* LaunchScreen.storyboard in Resources */,
+				01EDD8531C8ECD32000DC693 /* ListTableViewCell.xib in Resources */,
 				01261AFD1C89229E004AE8A0 /* Main.plist in Resources */,
 				0121AC3F1C8869DC0075515D /* blueArrow.png in Resources */,
 			);
@@ -384,16 +412,20 @@
 			files = (
 				018795161C8AE887003F3EC5 /* MainViewController.m in Sources */,
 				01A26DD01C88525B00554FD8 /* VOContentLayer.m in Sources */,
+				01EDD84E1C8EC17F000DC693 /* ListViewController.m in Sources */,
 				0121AC411C8869DC0075515D /* PullingRefreshTableView.m in Sources */,
+				01EDD8561C8EE5B0000DC693 /* LoginViewController.m in Sources */,
 				01261B001C892B7A004AE8A0 /* MainModel.m in Sources */,
 				01A26D931C88258000554FD8 /* AppDelegate.m in Sources */,
 				01261B041C8975DD004AE8A0 /* UIColor+forRGB.m in Sources */,
 				018795151C8AD817003F3EC5 /* LeftView.m in Sources */,
+				01EDD8491C8E6217000DC693 /* TopViewController.m in Sources */,
 				0121AC481C886CAC0075515D /* MainTableViewCell.m in Sources */,
 				01A26DD21C88525B00554FD8 /* VOSegment.m in Sources */,
 				017701321C8C65B400923C2C /* VideoTableViewCell.m in Sources */,
 				0187950F1C8AB5B8003F3EC5 /* TimeStamp.m in Sources */,
 				01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */,
+				01EDD8521C8ECD32000DC693 /* ListTableViewCell.m in Sources */,
 				01A26D901C88258000554FD8 /* main.m in Sources */,
 				01A26DD31C88525B00554FD8 /* VOSegmentedControl.m in Sources */,
 				016855D51C8C1572003F7468 /* UIViewController+Common.m in Sources */,

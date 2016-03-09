@@ -47,7 +47,8 @@
 @property(nonatomic, copy) NSString *play_count_string;
 @property(nonatomic, copy) NSString *first_url;
 @property(nonatomic, copy) NSString *play_time;
-@property(nonatomic, copy) NSString *comment_count;
+@property(nonatomic, copy) NSNumber *comment_count;
+@property(nonatomic, copy) NSString *description1;
 
 
 + (MainModel *)getDictionary:(NSDictionary *)dic;

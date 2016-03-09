@@ -11,6 +11,7 @@
 
 #import "HWDefine.h"
 #import "TimeStamp.h"
+#import "LeftView.h"
 
 #import "UIColor+forRGB.h"
 #import "UIViewController+Common.h"

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol pushViewControllerDelegate <NSObject>
+
+- (void)getWitchViewController:(UIViewController *)VC;
+
+@end
 @interface LeftView : UIView
 
+@property(nonatomic, assign) id<pushViewControllerDelegate>delegate;
 @end

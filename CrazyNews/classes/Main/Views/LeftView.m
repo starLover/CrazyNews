@@ -8,6 +8,12 @@
 
 #import "LeftView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TopViewController.h"
+#import "MainViewController.h"
+#import "ListViewController.h"
+#import "LoginViewController.h"
+
+
 
 @interface LeftView ()
 
@@ -76,6 +82,7 @@
         NSArray *array = @[@"首页", @"排行榜", @"栏目", @"搜索", @"设置", @"夜间模式", @"离线"];
         for (int i = 0; i < 7; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.tag = i + 1;
             NSString *str = array[i];
             if (str.length > 2) {
                 btn.imageEdgeInsets = UIEdgeInsetsMake(0, -150,                                                                                  0, 0);
@@ -86,7 +93,6 @@
                 btn.imageEdgeInsets = UIEdgeInsetsMake(0, -180,                                                                                  0, 0);
             }
             
-//            btn.titleEdgeInsets = UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>)
             btn.frame = CGRectMake(0, 150 + 44 * i, kScreenWidth - 100, 44);
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [btn setTitle:[NSString stringWithFormat:@"%@", array[i]] forState:UIControlStateNormal];
@@ -114,9 +120,59 @@
     return _btn;
 }
 - (void)goToNext:(UIButton *)btn{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blackView.alpha = 0.0;
+        self.whiteView.frame = CGRectMake(-(kScreenWidth - 100), 0, kScreenWidth - 100, kScreenHeight);
+    }];
+    switch (btn.tag) {
+        case 1:
+        {
+            MainViewController *mainVC = [[MainViewController alloc] init];
+            [self.delegate getWitchViewController:mainVC];
+        }
+            break;
+        case 2:
+        {
+            TopViewController *topVC = [[TopViewController alloc] init];
+            [self.delegate getWitchViewController:topVC];
+        }
+            break;
+        case 3:
+        {
+            ListViewController *listVC = [[ListViewController alloc] init];
+            [self.delegate getWitchViewController:listVC];
+        }
+            break;
+        case 4:
+        {
+            
+        }
+            break;
+        case 5:
+        {
+        }
+            break;
+        case 6:
+        {
+        }
+            break;
+        case 7:
+        {
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 //登陆
 - (void)loginAction{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self.delegate getWitchViewController:loginVC];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blackView.alpha = 0.0;
+        self.whiteView.frame = CGRectMake(-(kScreenWidth - 100), 0, kScreenWidth - 100, kScreenHeight);
+    }];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

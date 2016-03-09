@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *bigImage;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
-@property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *headImageView;
 
 @end

@@ -41,7 +41,7 @@
     NSString *playCountStr = [NSString stringWithFormat:@"%@ 播放", mainModel.play_count_string];
     self.playCount.text = playCountStr;
     [self.goodBtn setTitle:mainModel.vote_count forState:UIControlStateNormal];
-    [self.commentBtn setTitle:mainModel.comment_count forState:UIControlStateNormal];
+    [self.commentBtn setTitle:[NSString stringWithFormat:@"%@", mainModel.comment_count] forState:UIControlStateNormal];
     
 }
 -(MPMoviePlayerController *)moviePlayer{

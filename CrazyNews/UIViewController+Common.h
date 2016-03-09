@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Common)
+
 - (void)showBackButton;
+
 @end

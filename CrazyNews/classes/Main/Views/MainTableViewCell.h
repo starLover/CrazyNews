@@ -10,5 +10,6 @@
 #import "MainModel.h"
 
 @interface MainTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property(nonatomic, strong) MainModel *mainModel;
 @end

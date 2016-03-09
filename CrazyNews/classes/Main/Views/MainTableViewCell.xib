@@ -47,12 +47,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bigImage" destination="Y7Y-xV-oIT" id="AAO-Tr-PkL"/>
-                <outlet property="countLabel" destination="Ulu-WL-MGE" id="R9F-8i-2bH"/>
+                <outlet property="countLabel" destination="Ulu-WL-MGE" id="UxV-On-bzC"/>
                 <outlet property="detailLabel" destination="fBJ-DI-KUd" id="Sk6-jl-sgl"/>
                 <outlet property="headImageView" destination="soh-ep-L2I" id="WCm-mE-GOe"/>
                 <outlet property="name" destination="bZZ-sd-gcu" id="R1o-Et-9Gj"/>
             </connections>
-            <point key="canvasLocation" x="794.5" y="381"/>
+            <point key="canvasLocation" x="470.5" y="307"/>
         </tableViewCell>
     </objects>
 </document>
