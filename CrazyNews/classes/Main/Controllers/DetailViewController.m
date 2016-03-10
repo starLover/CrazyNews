@@ -10,7 +10,7 @@
 #import <AFHTTPSessionManager.h>
 
 
-@interface DetailViewController ()
+@interface DetailViewController ()<UIWebViewDelegate>
 
 @end
 
@@ -61,6 +61,7 @@
         NSLog(@"%@", error);
     }];
 }
+
 - (void)barAction:(UIButton *)btn{
 }
 - (void)didReceiveMemoryWarning {

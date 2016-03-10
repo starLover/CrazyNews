@@ -28,6 +28,7 @@
                                 </state>
                                 <connections>
                                     <action selector="articlesSizeAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="0mg-tG-N6k"/>
+                                    <action selector="bigTitleAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="xx5-av-a4e"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="mKh-jb-nB4">
@@ -55,7 +56,7 @@
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="shareAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="0rQ-nY-A3J"/>
+                                    <action selector="shareAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="F1H-C6-iur"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXB-PU-2Cf">
@@ -67,7 +68,7 @@
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="appversionAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="3dv-Fz-x8z"/>
+                                    <action selector="checkAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="YqT-L2-BXU"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="08h-be-Wcp">
@@ -102,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFx-qc-9jT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230.5" y="244.5"/>
+            <point key="canvasLocation" x="387.5" y="247.5"/>
         </scene>
     </scenes>
     <resources>

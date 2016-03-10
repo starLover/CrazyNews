@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <BmobSDK/Bmob.h>
 #import "CreateViewController.h"
+#import "MainViewController.h"
 
 @interface LoginViewController ()<pushViewControllerDelegate>
 
@@ -135,11 +136,12 @@
 //移除提示框
 - (void)removeAlertView{
     [self.alertController dismissViewControllerAnimated:NO completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 //回收键盘
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view resignFirstResponder];
+    [self.view endEditing:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

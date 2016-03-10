@@ -88,6 +88,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     NSString *strUrl;
+    
     if (self.segment.selectedSegmentIndex == 0) {
         strUrl = [NSString stringWithFormat:kRankingList, @"read"];
     } else if (self.segment.selectedSegmentIndex == 1) {
@@ -99,6 +100,9 @@
     [manager GET:strUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.readArray.count > 0) {
+            [self.readArray removeAllObjects];
+        }
 
         NSDictionary *responseDic = responseObject;
         NSArray *array = responseDic[@"articles"];
@@ -106,7 +110,6 @@
             MainModel *model = [MainModel getDictionary:dic];
             [self.readArray addObject:model];
         }
-        NSLog(@"123456789%lu",self.readArray.count);
         [self.tableView reloadData];
         [self.tableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

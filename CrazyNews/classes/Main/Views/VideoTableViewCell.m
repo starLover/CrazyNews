@@ -13,6 +13,7 @@
 
 @interface VideoTableViewCell ()
 @property(nonatomic, strong) MPMoviePlayerController *moviePlayer;
+@property (strong, nonatomic) IBOutlet UILabel *playTime;
 
 @property (strong, nonatomic) IBOutlet UIImageView *bigImageView;
 @property (strong, nonatomic) IBOutlet UILabel *timeLength;
@@ -37,6 +38,10 @@
 }
 
 - (void)setMainModel:(MainModel *)mainModel{
+    //播放时间
+    NSInteger time = [mainModel.play_time integerValue];
+    
+    self.playTime.text = [NSString stringWithFormat:@"%lu:%02lu", time / 60, time % 60];
     self.urlStr = mainModel.first_url;
     [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:mainModel.image] placeholderImage:nil];
     self.timeLength.text = mainModel.play_time;
@@ -101,6 +106,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i * (kScreenWidth - 60) / 4, 0, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4);
         btn.tag = i + 1;
+        NSLog(@"!!!%lu", btn.tag);
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"umeng_%d", i + 1]] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;
@@ -118,6 +124,7 @@
     [btn5 setImage:[UIImage imageNamed:@"umeng_5"] forState:UIControlStateNormal];
     [btn5 addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
     btn5.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;
+    btn5.tag = 5;
     btn5.clipsToBounds = YES;
     [self.view addSubview:btn5];
     
@@ -143,8 +150,10 @@
                                             url:[NSURL URLWithString:@"http://mob.com"]
                                           title:@"分享标题"
                                            type:SSDKContentTypeAuto];
+        
         //2、分享（可以弹出我们的分享菜单和编辑界面）
-        SSDKPlatformType typeId;
+        
+        SSDKPlatformType typeId = 0;
         switch (btn.tag) {
             case 1:
                 //微信好友
@@ -159,22 +168,60 @@
                 typeId = SSDKPlatformSubTypeQQFriend;
                 break;
             case 4:
+                //QQ空间
                 typeId = SSDKPlatformSubTypeQZone;
                 break;
             case 5:
+                //新浪微博
                 typeId = SSDKPlatformTypeSinaWeibo;
                 break;
             default:
                 break;
         }
         
-        
+        [ShareSDK share:typeId
+             parameters:shareParams
+         onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+             
+             
+             switch (state) {
+                 case SSDKResponseStateSuccess:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                         message:nil
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 case SSDKResponseStateFail:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                         message:[NSString stringWithFormat:@"%@", error]
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 case SSDKResponseStateCancel:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+                                                                         message:nil
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 default:
+                     break;
+             }
+         }];
         
         
 
-        [ShareSDK share:typeId parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-            
-        }];
     }
     [self disappearView];
 }

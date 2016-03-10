@@ -69,6 +69,7 @@
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellIdentifier"];
     [self.tableView launchRefreshing];
+    
 }
 #pragma mark     ------------ UITableViewDataSource
 

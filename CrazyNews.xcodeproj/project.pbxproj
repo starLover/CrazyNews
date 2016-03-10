@@ -37,6 +37,10 @@
 		01BCE4B51C90428000CD763F /* Set.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BCE4B41C90427F00CD763F /* Set.storyboard */; };
 		01BCE4B81C90432200CD763F /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BCE4B71C90432200CD763F /* SetViewController.m */; };
 		01BCE4BA1C90597B00CD763F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BCE4B91C90597B00CD763F /* MessageUI.framework */; };
+		01E918D01C90F21200195DFB /* SerachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E918CF1C90F21200195DFB /* SerachViewController.m */; };
+		01E918D21C91005600195DFB /* search.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01E918D11C91005600195DFB /* search.plist */; };
+		01E918D71C9160B700195DFB /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01E918D41C9160B700195DFB /* ProgressHUD.bundle */; };
+		01E918D81C9160B700195DFB /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E918D61C9160B700195DFB /* ProgressHUD.m */; };
 		01EDD8491C8E6217000DC693 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD8481C8E6217000DC693 /* TopViewController.m */; };
 		01EDD84B1C8EBBA2000DC693 /* read.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01EDD84A1C8EBBA2000DC693 /* read.plist */; };
 		01EDD84E1C8EC17F000DC693 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EDD84D1C8EC17F000DC693 /* ListViewController.m */; };
@@ -98,6 +102,12 @@
 		01BCE4B61C90432200CD763F /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		01BCE4B71C90432200CD763F /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		01BCE4B91C90597B00CD763F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		01E918CE1C90F21200195DFB /* SerachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerachViewController.h; sourceTree = "<group>"; };
+		01E918CF1C90F21200195DFB /* SerachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerachViewController.m; sourceTree = "<group>"; };
+		01E918D11C91005600195DFB /* search.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = search.plist; sourceTree = "<group>"; };
+		01E918D41C9160B700195DFB /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		01E918D51C9160B700195DFB /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		01E918D61C9160B700195DFB /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		01EDD8471C8E6217000DC693 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
 		01EDD8481C8E6217000DC693 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		01EDD84A1C8EBBA2000DC693 /* read.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = read.plist; sourceTree = "<group>"; };
@@ -221,6 +231,8 @@
 				01BCE4B01C8FA53700CD763F /* CreateViewController.m */,
 				01BCE4B61C90432200CD763F /* SetViewController.h */,
 				01BCE4B71C90432200CD763F /* SetViewController.m */,
+				01E918CE1C90F21200195DFB /* SerachViewController.h */,
+				01E918CF1C90F21200195DFB /* SerachViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +245,7 @@
 				01261AFF1C892B7A004AE8A0 /* MainModel.m */,
 				0183601B1C8D17DD0074F372 /* Video.plist */,
 				01EDD84A1C8EBBA2000DC693 /* read.plist */,
+				01E918D11C91005600195DFB /* search.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,6 +274,7 @@
 		01A26DC11C883AA100554FD8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				01E918D31C9160B700195DFB /* ProgressHUD */,
 				0121AC3A1C8869DC0075515D /* PullingRefreshTableView */,
 				01A26DC71C88525B00554FD8 /* VOSegmentedControl */,
 			);
@@ -280,6 +294,17 @@
 				01A26DCF1C88525B00554FD8 /* VOSegmentedControl.m */,
 			);
 			path = VOSegmentedControl;
+			sourceTree = "<group>";
+		};
+		01E918D31C9160B700195DFB /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				01E918D41C9160B700195DFB /* ProgressHUD.bundle */,
+				01E918D51C9160B700195DFB /* ProgressHUD.h */,
+				01E918D61C9160B700195DFB /* ProgressHUD.m */,
+			);
+			name = ProgressHUD;
+			path = PullingRefreshTableView/ProgressHUD;
 			sourceTree = "<group>";
 		};
 		7A96A46D55CD00CDD5516AF0 /* Frameworks */ = {
@@ -369,6 +394,8 @@
 				0121AC401C8869DC0075515D /* blueArrowDown.png in Resources */,
 				0183601C1C8D17DE0074F372 /* Video.plist in Resources */,
 				01A26D951C88258000554FD8 /* Assets.xcassets in Resources */,
+				01E918D71C9160B700195DFB /* ProgressHUD.bundle in Resources */,
+				01E918D21C91005600195DFB /* search.plist in Resources */,
 				01A26D981C88258000554FD8 /* LaunchScreen.storyboard in Resources */,
 				01EDD8531C8ECD32000DC693 /* ListTableViewCell.xib in Resources */,
 				01261AFD1C89229E004AE8A0 /* Main.plist in Resources */,
@@ -438,6 +465,7 @@
 				0121AC411C8869DC0075515D /* PullingRefreshTableView.m in Sources */,
 				01EDD8561C8EE5B0000DC693 /* LoginViewController.m in Sources */,
 				01261B001C892B7A004AE8A0 /* MainModel.m in Sources */,
+				01E918D81C9160B700195DFB /* ProgressHUD.m in Sources */,
 				01A26D931C88258000554FD8 /* AppDelegate.m in Sources */,
 				01261B041C8975DD004AE8A0 /* UIColor+forRGB.m in Sources */,
 				018795151C8AD817003F3EC5 /* LeftView.m in Sources */,
@@ -445,6 +473,7 @@
 				0121AC481C886CAC0075515D /* MainTableViewCell.m in Sources */,
 				01A26DD21C88525B00554FD8 /* VOSegment.m in Sources */,
 				017701321C8C65B400923C2C /* VideoTableViewCell.m in Sources */,
+				01E918D01C90F21200195DFB /* SerachViewController.m in Sources */,
 				0187950F1C8AB5B8003F3EC5 /* TimeStamp.m in Sources */,
 				01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */,
 				01EDD8521C8ECD32000DC693 /* ListTableViewCell.m in Sources */,

@@ -13,8 +13,10 @@
 #import "ListViewController.h"
 #import "LoginViewController.h"
 #import "SetViewController.h"
+#import "SerachViewController.h"
 
 
+static BOOL night = NO;
 
 @interface LeftView ()
 
@@ -121,36 +123,38 @@
     return _btn;
 }
 - (void)goToNext:(UIButton *)btn{
-    [UIView animateWithDuration:0.5 animations:^{
-        self.blackView.alpha = 0.0;
-        self.whiteView.frame = CGRectMake(-(kScreenWidth - 100), 0, kScreenWidth - 100, kScreenHeight);
-    }];
     switch (btn.tag) {
         case 1:
         {
+            [self dismissLeftView];
             MainViewController *mainVC = [[MainViewController alloc] init];
             [self.delegate getWitchViewController:mainVC];
         }
             break;
         case 2:
         {
+            [self dismissLeftView];
             TopViewController *topVC = [[TopViewController alloc] init];
             [self.delegate getWitchViewController:topVC];
         }
             break;
         case 3:
         {
+            [self dismissLeftView];
             ListViewController *listVC = [[ListViewController alloc] init];
             [self.delegate getWitchViewController:listVC];
         }
             break;
         case 4:
         {
-            
+            [self dismissLeftView];
+            SerachViewController *serach = [[SerachViewController alloc] init];
+            [self.delegate getWitchViewController:serach];
         }
             break;
         case 5:
         {
+            [self dismissLeftView];
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Set" bundle:nil];
             SetViewController *setVC = [story instantiateViewControllerWithIdentifier:@"Set"];
             [self.delegate getWitchViewController:setVC];
@@ -158,6 +162,23 @@
             break;
         case 6:
         {
+            NSLog(@"%d", night);
+            if (night) {
+                [btn setImage:[UIImage imageNamed:@"icon_sidebar_sun"] forState:UIControlStateNormal];
+                [btn setTitle:@"白天模式" forState:UIControlStateNormal];
+                UIWindow *window = [[UIApplication sharedApplication].delegate window];
+                window.alpha = 1.0;
+                window.backgroundColor = [UIColor whiteColor];
+                night = NO;
+            } else {
+                [btn setImage:[UIImage imageNamed:@"icon_6"] forState:UIControlStateNormal];
+                [btn setTitle:@"夜间模式" forState:UIControlStateNormal];
+                UIWindow *window = [[UIApplication sharedApplication].delegate window];
+                window.backgroundColor = [UIColor blackColor];
+                window.alpha = 0.5;
+                night = YES;
+            }
+            
         }
             break;
         case 7:
@@ -168,6 +189,13 @@
         default:
             break;
     }
+}
+
+- (void)dismissLeftView{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blackView.alpha = 0.0;
+        self.whiteView.frame = CGRectMake(-(kScreenWidth - 100), 0, kScreenWidth - 100, kScreenHeight);
+    }];
 }
 //登陆
 - (void)loginAction{

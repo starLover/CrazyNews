@@ -9,10 +9,19 @@
 #import "SetViewController.h"
 #import <SDWebImage/SDImageCache.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "ProgressHUD.h"
+#import <ShareSDK/ShareSDK.h>
+
 
 @interface SetViewController ()<pushViewControllerDelegate, MFMailComposeViewControllerDelegate>
+- (IBAction)checkAction:(id)sender;
+- (IBAction)shareAction:(id)sender;
+- (IBAction)bigTitleAction:(id)sender;
 - (IBAction)cleanAction:(id)sender;
 - (IBAction)helpAction:(id)sender;
+
+@property (nonatomic, strong) UIView *view1;
+@property (nonatomic, strong) UIView *blackView;
 @property (strong, nonatomic) IBOutlet UIButton *cleanBtn;
 
 @end
@@ -66,6 +75,170 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)checkAction:(id)sender {
+    [ProgressHUD show:@"正在检测..."];
+    [self performSelector:@selector(endCheck) withObject:nil afterDelay:2.0];
+}
+
+- (void)endCheck{
+    [ProgressHUD showSuccess:@"恭喜！已是最新版本"];
+}
+
+- (IBAction)shareAction:(id)sender {
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    
+    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, -667, 0, 0)];
+    self.view1.layer.cornerRadius = 5;
+    self.view1.backgroundColor = [UIColor whiteColor];
+    
+    self.blackView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.blackView.backgroundColor = [UIColor blackColor];
+    self.blackView.alpha = 0;
+    [window addSubview:self.blackView];
+    [window addSubview:self.view1];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blackView.alpha = 0.5;
+        self.view1.frame = CGRectMake(30, 300, kScreenWidth - 60, 200);
+        
+    }];
+    
+    NSArray *array = @[@"微信好友", @"朋友圈", @"QQ", @"QQ空间"];
+    for (int i = 0; i < 4; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(i * (kScreenWidth - 60) / 4, 0, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4);
+        btn.tag = i + 1;
+        NSLog(@"!!!%lu", btn.tag);
+        [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"umeng_%d", i + 1]] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;
+        btn.clipsToBounds = YES;
+        [self.view1 addSubview:btn];
+        
+        //
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(i * (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4 - 30, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4)];
+        label.text = [NSString stringWithFormat:@"%@", array[i]];
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.view1 addSubview:label];
+    }
+    UIButton *btn5 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn5.frame = CGRectMake(0, 20 + (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4);
+    [btn5 setImage:[UIImage imageNamed:@"umeng_5"] forState:UIControlStateNormal];
+    [btn5 addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
+    btn5.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;
+    btn5.tag = 5;
+    btn5.clipsToBounds = YES;
+    [self.view1 addSubview:btn5];
+    
+    //
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, (kScreenWidth - 60) / 2 - 20, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4)];
+    label.text = @"新浪微博";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view1 addSubview:label];
+    
+    //手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disappearView)];
+    [self.blackView addGestureRecognizer:tap];
+}
+//分享给朋友
+- (void)shareToFriend:(UIButton *)btn{
+    //1、创建分享参数
+    NSArray* imageArray = @[[UIImage imageNamed:@"btn_nav_favourite_pre"]];
+    if (imageArray) {
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        
+        [shareParams SSDKSetupShareParamsByText:@"CrazyNews,独怜幽草涧边生，上有黄鹂深树鸣。春潮带雨晚来急，野渡无人舟自横"
+                                         images:imageArray
+                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                          title:@"分享标题"
+                                           type:SSDKContentTypeAuto];
+        
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        
+        SSDKPlatformType typeId = 0;
+        switch (btn.tag) {
+            case 1:
+                //微信好友
+                typeId = SSDKPlatformSubTypeWechatSession;
+                break;
+            case 2:
+                //微信朋友圈;
+                typeId = SSDKPlatformSubTypeWechatTimeline;
+                break;
+            case 3:
+                //QQ好友
+                typeId = SSDKPlatformSubTypeQQFriend;
+                break;
+            case 4:
+                //QQ空间
+                typeId = SSDKPlatformSubTypeQZone;
+                break;
+            case 5:
+                //新浪微博
+                typeId = SSDKPlatformTypeSinaWeibo;
+                break;
+            default:
+                break;
+        }
+        
+        [ShareSDK share:typeId
+             parameters:shareParams
+         onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+             
+             
+             switch (state) {
+                 case SSDKResponseStateSuccess:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                         message:nil
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 case SSDKResponseStateFail:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                         message:[NSString stringWithFormat:@"%@", error]
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 case SSDKResponseStateCancel:
+                 {
+                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+                                                                         message:nil
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"确定"
+                                                               otherButtonTitles:nil];
+                     [alertView show];
+                     break;
+                 }
+                 default:
+                     break;
+             }
+         }];
+        
+        
+        
+    }
+    [self disappearView];
+}
+
+- (void)disappearView{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blackView.alpha = 0;
+        self.view1.frame = CGRectMake(0, -667, 0, 0);
+    }];
+    [self.view1 removeFromSuperview];
+}
+
+- (IBAction)bigTitleAction:(id)sender {
+}
 
 - (IBAction)cleanAction:(id)sender {
     //清除图片缓存
