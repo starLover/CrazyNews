@@ -279,7 +279,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     NSString *urlString = kMainUrl;
     if (refresh) {
-        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", stampTime]];
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", (long)stampTime]];
         NSLog(@"%@", urlString);
     } else{
         if (self.dataArray.count > 0) {
@@ -315,7 +315,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     NSString *urlString = kVideo;
     if (refresh) {
-        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", stampTime1]];
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", (long)stampTime1]];
     } else{
         if (self.videoArray.count > 0) {
             [self.videoArray removeAllObjects];

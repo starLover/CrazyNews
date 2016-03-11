@@ -8,10 +8,11 @@
 
 #import "DetailViewController.h"
 #import <AFHTTPSessionManager.h>
-
+#import "AppDelegate.h"
+#import "UrlString+CoreDataProperties.h"
 
 @interface DetailViewController ()<UIWebViewDelegate>
-
+@property(nonatomic, strong) NSManagedObjectContext *context;
 @end
 
 @implementation DetailViewController
@@ -30,7 +31,7 @@
         btn.tag = i + 100;
         [btn setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(barAction:) forControlEvents:UIControlEventTouchUpInside];
-        if (titleStr) {
+        if (titleStr && i > 0) {
             [btn setTitle:titleStr forState:UIControlStateNormal];
         }
         NSLog(@"%@", btn.titleLabel.text);
@@ -39,7 +40,7 @@
     }
     self.navigationItem.rightBarButtonItems = barArray;
     //UIWebView
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 44)];
     NSURL *url = [NSURL URLWithString:self.urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:10.0];
@@ -56,13 +57,38 @@
     [manager GET:@"" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
     }];
 }
 
 - (void)barAction:(UIButton *)btn{
+    switch (btn.tag - 100) {
+        case 0:
+        {
+            
+            AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+            self.context = delegate.managedObjectContext;
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"UrlString" inManagedObjectContext:self.context];
+            UrlString *url = [[UrlString alloc] initWithEntity:entity insertIntoManagedObjectContext:self.context];
+            url.name = @"详细网址";
+            url.url = self.urlString;
+            [self.context save:nil];
+            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSLog(@"!!!%@", path);
+        }
+            break;
+        case 1:
+        {
+        }
+            break;
+        case 2:
+        {
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -109,7 +109,6 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i * (kScreenWidth - 60) / 4, 0, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4);
         btn.tag = i + 1;
-        NSLog(@"!!!%lu", btn.tag);
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"umeng_%d", i + 1]] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;

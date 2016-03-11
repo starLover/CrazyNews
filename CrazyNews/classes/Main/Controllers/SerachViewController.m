@@ -131,8 +131,6 @@
 }
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.customSearchBar resignFirstResponder];
-    [self.view endEditing:YES];
-    [self.view resignFirstResponder];
 }
 
 #pragma mark      ---------------- LazyLoading

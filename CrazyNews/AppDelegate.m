@@ -119,6 +119,109 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveContext];
+}
+#pragma mark - Core Data stack
+
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (NSURL *)applicationDocumentsDirectory {
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.Mangoinc.UILessonCoreData" in the application's documents directory.
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSManagedObjectModel *)managedObjectModel {
+    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
+    //如果数据模型类为空就去创建一个新的，如果不为空就返回当前数据模型类
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    //在bundle路径下创建了一个跟工程名字相同的，后缀是.momd类型的文件
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataBase" withExtension:@"momd"];
+    
+    //通过路径初始化一个 数据模型工具类
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
+    //如果数据持久化存储助理类 为空就去创建一个，如果不为空 就返回当前数据持久化存储助理
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    
+    // Create the coordinator and store
+    //使用数据模型工具类创建的一个数据持久化存储助理
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    //在document路径下创建了一个跟工程名字相同的数据库文件。
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DataBase.sqlite"];
+    //创建了一个Error对象
+    NSError *error = nil;
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    
+    //addPersistentStoreWithType: 选择数据持久化文件类型，默认使用的数据库
+    //configuration: 配置信息
+    //URL:数据库的一个路径
+    //options:可选项
+    //error:错误信息
+    
+    //如果数据库创建失败，终止程序
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        // Report any error we got.
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
+        dict[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        // Replace this with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        //程序终止 ！！！！！！！ 慎用
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
+
+- (NSManagedObjectContext *)managedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    //如果 数据管理器工具类已经存在，那么就返回 数据管理器工具类的实例对象。反之则创建一个新的 数据管理器工具类
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    //创建了一个数据持久化存储助理
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    //如果数据持久化存储助理为空，返回nil
+    if (!coordinator) {
+        return nil;
+    }
+    //数据持久化存储助理不为空的时候，才去创建 数据管理器工具类
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    //给数据管理器工具类 设置了一个数据持久化存储助理
+    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _managedObjectContext;
+}
+
+#pragma mark - Core Data Saving support
+
+- (void)saveContext {
+    //创建了一个新的 数据管理器工具类，并把当前的数据管理器工具类赋值给新的类
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    //如果数据管理器工具类不为空 进入此方法
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        //如果数据改变，且保存失败的时候终止程序
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved                                                                                    %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 

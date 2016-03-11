@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "btn_nav_favourite_nor.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "abc_ic_menu_moreoverflow_mtrl_alpha.png",
       "scale" : "2x"
     },
     {

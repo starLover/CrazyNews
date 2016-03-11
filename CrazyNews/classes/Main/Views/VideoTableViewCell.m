@@ -41,7 +41,7 @@
     //播放时间
     NSInteger time = [mainModel.play_time integerValue];
     
-    self.playTime.text = [NSString stringWithFormat:@"%lu:%02lu", time / 60, time % 60];
+    self.playTime.text = [NSString stringWithFormat:@"%ld:%02ld", time / 60, time % 60];
     self.urlStr = mainModel.first_url;
     [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:mainModel.image] placeholderImage:nil];
     self.timeLength.text = mainModel.play_time;
@@ -64,7 +64,7 @@
         //初始化播放器并设置播放模式
         _moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
         //.view 播放器视图，如果要显示视频，必须将此播放器添加到控制器视图中
-        _moviePlayer.view.frame = CGRectMake(8, 8, 359, 190);
+        _moviePlayer.view.frame = CGRectMake(8, 8, self.frame.size.width - 16, self.frame.size.height - 82);
         _moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:self.moviePlayer.view];
     }
@@ -106,7 +106,6 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i * (kScreenWidth - 60) / 4, 0, (kScreenWidth - 60) / 4, (kScreenWidth - 60) / 4);
         btn.tag = i + 1;
-        NSLog(@"!!!%lu", btn.tag);
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"umeng_%d", i + 1]] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(shareToFriend:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = (kScreenWidth - 60) / 4 / 2;
