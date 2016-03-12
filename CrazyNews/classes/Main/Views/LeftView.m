@@ -14,6 +14,7 @@
 #import "LoginViewController.h"
 #import "SetViewController.h"
 #import "SerachViewController.h"
+#import "LoginViewController.h"
 
 
 static BOOL night = NO;
@@ -52,6 +53,8 @@ static BOOL night = NO;
     
     //登陆头像 按钮
     UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 50, 50)];
+    
+    
     headImage.image = [UIImage imageNamed:@"avatar_m"];
     headImage.clipsToBounds = YES;
     headImage.layer.cornerRadius = 25;
@@ -83,7 +86,7 @@ static BOOL night = NO;
         self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(-(kScreenWidth - 100), 0, kScreenWidth - 100, kScreenHeight)];
         self.whiteView.backgroundColor = [UIColor whiteColor];
         NSArray *array = @[@"首页", @"排行榜", @"栏目", @"搜索", @"设置", @"夜间模式", @"离线"];
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.tag = i + 1;
             NSString *str = array[i];
@@ -162,7 +165,6 @@ static BOOL night = NO;
             break;
         case 6:
         {
-            NSLog(@"%d", night);
             if (night) {
                 [btn setImage:[UIImage imageNamed:@"icon_sidebar_sun"] forState:UIControlStateNormal];
                 [btn setTitle:@"白天模式" forState:UIControlStateNormal];
@@ -179,10 +181,6 @@ static BOOL night = NO;
                 night = YES;
             }
             
-        }
-            break;
-        case 7:
-        {
         }
             break;
             

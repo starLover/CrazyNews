@@ -30,6 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    NSLog(@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
     SDImageCache *cache = [SDImageCache sharedImageCache];
     NSInteger cacheSize = [cache getSize];
     [self.cleanBtn setTitle:[NSString stringWithFormat:@"清除缓存(%.2fM)", (float)cacheSize / 1024 / 1024] forState:UIControlStateNormal];

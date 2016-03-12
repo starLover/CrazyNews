@@ -50,6 +50,7 @@
         _comment_count = dic[@"comment_count"];
         _description1 = dic[@"description"];
         _name = dic[@"name"];
+        _uniq_id = dic[@"uniq_id"];
         _play_time = [dic[@"play_time"] stringValue];
         //数组
         _recommenders = dic[@"recommenders"];

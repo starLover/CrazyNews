@@ -27,7 +27,6 @@
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="articlesSizeAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="0mg-tG-N6k"/>
                                     <action selector="bigTitleAction:" destination="dDN-hF-fG6" eventType="touchUpInside" id="xx5-av-a4e"/>
                                 </connections>
                             </button>

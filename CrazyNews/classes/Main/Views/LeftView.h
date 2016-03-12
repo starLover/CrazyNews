@@ -14,6 +14,5 @@
 
 @end
 @interface LeftView : UIView
-
 @property(nonatomic, assign) id<pushViewControllerDelegate>delegate;
 @end

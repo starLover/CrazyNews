@@ -51,9 +51,11 @@
 #pragma mark    ------------      UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.mainModel = self.readArray[indexPath.row];
-    MainModel *model = self.readArray[indexPath.row];
-    cell.countLabel.text = model.author_name;
+    if (indexPath.row < self.readArray.count) {
+        cell.mainModel = self.readArray[indexPath.row];
+        MainModel *model = self.readArray[indexPath.row];
+        cell.countLabel.text = model.author_name;
+    }
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

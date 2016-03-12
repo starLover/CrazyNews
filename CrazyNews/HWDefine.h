@@ -15,6 +15,8 @@
 #define kRankingList @"http://dailyapi.ibaozou.com/api/v1/rank/%@/day"
 #define kList @"http://dailyapi.ibaozou.com/api/v1/sections"
 
+#define kList1 @"http://dailyapi.ibaozou.com/api/v1/section/%@"
+
 #define kBmobKey @"e27b7af0247b108c7b0eca355f2f0c68"
 
 

@@ -54,12 +54,8 @@
 }
 -(MPMoviePlayerController *)moviePlayer{
     if (!_moviePlayer) {
-        //        NSString *urlStr = [[NSBundle mainBundle] pathForResource:@"乐享极智" ofType:@".mp4"];
-        //        NSURL *url=[NSURL fileURLWithPath:urlStr];
-        
-        
         self.urlStr = [self.urlStr stringByAddingPercentEscapesUsingEncoding:
-                NSUTF8StringEncoding];
+                       NSUTF8StringEncoding];
         NSURL *url=[NSURL URLWithString:self.urlStr];
         //初始化播放器并设置播放模式
         _moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
@@ -74,7 +70,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -94,11 +90,11 @@
     self.blackView.alpha = 0;
     [window addSubview:self.blackView];
     [window addSubview:self.view];
-
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.blackView.alpha = 0.5;
-        self.view.frame = CGRectMake(30, 300, kScreenWidth - 60, 200);
-
+        self.view.frame = CGRectMake(30, 300, kScreenWidth - 60, kScreenHeight / 3);
+        
     }];
     
     NSArray *array = @[@"微信好友", @"朋友圈", @"QQ", @"QQ空间"];
@@ -132,7 +128,7 @@
     label.text = @"新浪微博";
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
-
+    
     //手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disappearView)];
     [self.blackView addGestureRecognizer:tap];
@@ -143,7 +139,7 @@
     NSArray* imageArray = @[[UIImage imageNamed:@"btn_nav_favourite_pre"]];
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-
+        
         [shareParams SSDKSetupShareParamsByText:@"CrazyNews,独怜幽草涧边生，上有黄鹂深树鸣。春潮带雨晚来急，野渡无人舟自横"
                                          images:imageArray
                                             url:[NSURL URLWithString:@"http://mob.com"]
@@ -220,7 +216,7 @@
          }];
         
         
-
+        
     }
     [self disappearView];
 }

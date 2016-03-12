@@ -49,7 +49,7 @@
 @property(nonatomic, copy) NSString *play_time;
 @property(nonatomic, copy) NSNumber *comment_count;
 @property(nonatomic, copy) NSString *description1;
-
+@property(nonatomic, copy) NSString *uniq_id;
 
 + (MainModel *)getDictionary:(NSDictionary *)dic;
 

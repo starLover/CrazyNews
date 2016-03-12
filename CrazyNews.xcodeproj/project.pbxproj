@@ -16,6 +16,8 @@
 		01261B001C892B7A004AE8A0 /* MainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01261AFF1C892B7A004AE8A0 /* MainModel.m */; };
 		01261B041C8975DD004AE8A0 /* UIColor+forRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 01261B031C8975DD004AE8A0 /* UIColor+forRGB.m */; };
 		01261B071C89AF75004AE8A0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01261B061C89AF75004AE8A0 /* DetailViewController.m */; };
+		015C4C1B1C93C67C000DA60E /* lanmu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 015C4C1A1C93C67C000DA60E /* lanmu.plist */; };
+		015C4C1E1C93EE9F000DA60E /* List1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015C4C1D1C93EE9F000DA60E /* List1ViewController.m */; };
 		016855D51C8C1572003F7468 /* UIViewController+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 016855D41C8C1572003F7468 /* UIViewController+Common.m */; };
 		017701321C8C65B400923C2C /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 017701301C8C65B400923C2C /* VideoTableViewCell.m */; };
 		017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017701311C8C65B400923C2C /* VideoTableViewCell.xib */; };
@@ -70,6 +72,9 @@
 		01261B031C8975DD004AE8A0 /* UIColor+forRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+forRGB.m"; sourceTree = "<group>"; };
 		01261B051C89AF75004AE8A0 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		01261B061C89AF75004AE8A0 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		015C4C1A1C93C67C000DA60E /* lanmu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lanmu.plist; sourceTree = "<group>"; };
+		015C4C1C1C93EE9F000DA60E /* List1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List1ViewController.h; sourceTree = "<group>"; };
+		015C4C1D1C93EE9F000DA60E /* List1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List1ViewController.m; sourceTree = "<group>"; };
 		016855D31C8C1572003F7468 /* UIViewController+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Common.h"; sourceTree = "<group>"; };
 		016855D41C8C1572003F7468 /* UIViewController+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Common.m"; sourceTree = "<group>"; };
 		0177012F1C8C65B400923C2C /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
@@ -237,6 +242,8 @@
 				01EDD8481C8E6217000DC693 /* TopViewController.m */,
 				01EDD84C1C8EC17F000DC693 /* ListViewController.h */,
 				01EDD84D1C8EC17F000DC693 /* ListViewController.m */,
+				015C4C1C1C93EE9F000DA60E /* List1ViewController.h */,
+				015C4C1D1C93EE9F000DA60E /* List1ViewController.m */,
 				01EDD8541C8EE5B0000DC693 /* LoginViewController.h */,
 				01EDD8551C8EE5B0000DC693 /* LoginViewController.m */,
 				01BCE4AF1C8FA53700CD763F /* CreateViewController.h */,
@@ -258,6 +265,7 @@
 				0183601B1C8D17DD0074F372 /* Video.plist */,
 				01EDD84A1C8EBBA2000DC693 /* read.plist */,
 				01E918D11C91005600195DFB /* search.plist */,
+				015C4C1A1C93C67C000DA60E /* lanmu.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,6 +413,7 @@
 			files = (
 				01EDD84B1C8EBBA2000DC693 /* read.plist in Resources */,
 				0121AC491C886CAC0075515D /* MainTableViewCell.xib in Resources */,
+				015C4C1B1C93C67C000DA60E /* lanmu.plist in Resources */,
 				017701331C8C65B400923C2C /* VideoTableViewCell.xib in Resources */,
 				01A26DC61C883CFA00554FD8 /* Main.storyboard in Resources */,
 				01BCE4B31C8FA56400CD763F /* Create.storyboard in Resources */,
@@ -496,6 +505,7 @@
 				0187950F1C8AB5B8003F3EC5 /* TimeStamp.m in Sources */,
 				01A26DD11C88525B00554FD8 /* VOIndicatorAnimation.m in Sources */,
 				01EDD8521C8ECD32000DC693 /* ListTableViewCell.m in Sources */,
+				015C4C1E1C93EE9F000DA60E /* List1ViewController.m in Sources */,
 				01A26D901C88258000554FD8 /* main.m in Sources */,
 				01BCE4B11C8FA53700CD763F /* CreateViewController.m in Sources */,
 				01A26DD31C88525B00554FD8 /* VOSegmentedControl.m in Sources */,

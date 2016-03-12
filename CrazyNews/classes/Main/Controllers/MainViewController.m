@@ -76,7 +76,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.segment.selectedSegmentIndex == 0) {
         MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-        if (indexPath.row <= self.dataArray.count) {
+        if (indexPath.row < self.dataArray.count) {
             cell.mainModel = self.dataArray[indexPath.row];
         }
         return cell;
@@ -85,7 +85,7 @@
     VideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoCellIdentifier"];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoTableViewCell" owner:nil options:nil] firstObject];
-        if (indexPath.row <= self.videoArray.count) {
+        if (indexPath.row < self.videoArray.count) {
             cell.mainModel = self.videoArray[indexPath.row];
         }
     }
@@ -108,8 +108,7 @@
             detailVC.urlString = model.link;
         }
         [self.navigationController pushViewController:detailVC animated:YES];
-    } else {
-           }
+    }
 }
 
 
@@ -184,9 +183,8 @@
         self.tableView.rowHeight = 120;
         [self request];
     } else {
-        self.tableView.rowHeight = 273;
-        self.tableView.tableHeaderView = nil;
         [self videoRequest];
+        self.tableView.rowHeight = 273;
     }
 }
 - (void)headerAction:(UIButton *)btn{
@@ -280,7 +278,6 @@
     NSString *urlString = kMainUrl;
     if (refresh) {
         urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", (long)stampTime]];
-        NSLog(@"%@", urlString);
     } else{
         if (self.dataArray.count > 0) {
             [self.dataArray removeAllObjects];
@@ -303,7 +300,6 @@
             [self.dataArray addObject:mainModel];
         }
         [self.tableView tableViewDidFinishedLoading];
-        //        self.tableView.reachedTheEnd = NO;
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -313,6 +309,7 @@
 - (void)videoRequest{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
+    
     NSString *urlString = kVideo;
     if (refresh) {
         urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"?timestamp=%lu&", (long)stampTime1]];
@@ -332,6 +329,7 @@
         }
         [self.tableView tableViewDidFinishedLoading];
         [self.tableView reloadData];
+        self.tableView.tableHeaderView = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }

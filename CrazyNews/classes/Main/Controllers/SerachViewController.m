@@ -51,7 +51,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    if (indexPath.row <= self.dataArray.count) {
+    if (indexPath.row < self.dataArray.count) {
         cell.mainModel = self.dataArray[indexPath.row];
     }
     return cell;

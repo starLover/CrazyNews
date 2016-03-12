@@ -68,6 +68,7 @@
     UILabel *namelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 200, 80, 44)];
     namelabel.text = @"用户名";
     self.nametf = [[UITextField alloc] initWithFrame:CGRectMake(90, 200, kScreenWidth - 100, 44)];
+    self.nametf.borderStyle = UITextBorderStyleRoundedRect;
     self.nametf.placeholder = @"请输入用户名";
     self.nametf.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:namelabel];
@@ -77,6 +78,7 @@
     passlabel.text = @"密码";
     self.passtf = [[UITextField alloc] initWithFrame:CGRectMake(90, 270, kScreenWidth - 100, 44)];
     self.passtf.placeholder = @"请输入密码";
+    self.passtf.borderStyle = UITextBorderStyleRoundedRect;
     self.passtf.secureTextEntry = YES;
     self.passtf.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:passlabel];
@@ -85,7 +87,7 @@
     UIButton *createBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     createBtn.frame = CGRectMake(kScreenWidth - 100, 430, 60, 44);
     [createBtn setTitle:@"注册" forState:UIControlStateNormal];
-    createBtn.backgroundColor = [UIColor blueColor];
+    createBtn.backgroundColor = [[UIColor purpleColor]colorWithAlphaComponent:0.2];
     createBtn.layer.borderWidth = 1;
     createBtn.layer.cornerRadius = 5;
     [createBtn addTarget:self action:@selector(createAction) forControlEvents:UIControlEventTouchUpInside];
@@ -94,7 +96,7 @@
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(50, 370, kScreenWidth - 100, 44);
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    loginBtn.backgroundColor = [UIColor redColor];
+    loginBtn.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.4];
     [loginBtn addTarget:self action:@selector(loginAction1) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
 }
@@ -111,6 +113,7 @@
         if (user) {
              self.alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"登录成功 \n\n3秒后返回到主界面" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [self.delegate getUserImage:@""];
             [self.alertController addAction:action];
             [self presentViewController:self.alertController animated:YES completion:nil];
             if (self.timer == nil) {

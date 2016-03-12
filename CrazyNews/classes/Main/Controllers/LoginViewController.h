@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@protocol userImageDelegate <NSObject>
 
+- (void)getUserImage:(NSString *)name;
+@end
+
+@interface LoginViewController : UIViewController
+@property(nonatomic, assign) id<userImageDelegate>delegate;
 @end
