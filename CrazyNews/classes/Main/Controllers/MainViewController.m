@@ -58,7 +58,7 @@
     UIButton *emptyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     emptyBtn.frame = CGRectMake(0, 0, 100, 44);
     emptyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
-    [emptyBtn setTitle:@"暴走日报" forState:UIControlStateNormal];
+    [emptyBtn setTitle:@"疯狂日报" forState:UIControlStateNormal];
     [emptyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIBarButtonItem *empty = [[UIBarButtonItem alloc] initWithCustomView:emptyBtn];
     self.navigationItem.leftBarButtonItems = @[leftBarBtn, empty];

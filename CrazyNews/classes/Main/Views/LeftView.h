@@ -14,5 +14,8 @@
 
 @end
 @interface LeftView : UIView
+@property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *image;
+
 @property(nonatomic, assign) id<pushViewControllerDelegate>delegate;
 @end

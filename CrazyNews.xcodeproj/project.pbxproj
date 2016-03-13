@@ -25,6 +25,7 @@
 		0187950F1C8AB5B8003F3EC5 /* TimeStamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187950E1C8AB5B8003F3EC5 /* TimeStamp.m */; };
 		018795151C8AD817003F3EC5 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 018795141C8AD817003F3EC5 /* LeftView.m */; };
 		018795161C8AE887003F3EC5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A26DC31C883AEC00554FD8 /* MainViewController.m */; };
+		01881BDC1C94F3440056E1B6 /* Sina.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01881BDB1C94F3440056E1B6 /* Sina.plist */; };
 		018A13741C929E2400C64334 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018A13731C929E2400C64334 /* CoreData.framework */; };
 		018A13771C929F8500C64334 /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 018A13751C929F8500C64334 /* DataBase.xcdatamodeld */; };
 		018A137C1C92A60600C64334 /* UrlString+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 018A13791C92A60600C64334 /* UrlString+CoreDataProperties.m */; };
@@ -85,6 +86,7 @@
 		0187950E1C8AB5B8003F3EC5 /* TimeStamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStamp.m; sourceTree = "<group>"; };
 		018795131C8AD817003F3EC5 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
 		018795141C8AD817003F3EC5 /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
+		01881BDB1C94F3440056E1B6 /* Sina.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sina.plist; sourceTree = "<group>"; };
 		018A13731C929E2400C64334 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		018A13761C929F8500C64334 /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		018A13781C92A60600C64334 /* UrlString+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UrlString+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				01EDD84A1C8EBBA2000DC693 /* read.plist */,
 				01E918D11C91005600195DFB /* search.plist */,
 				015C4C1A1C93C67C000DA60E /* lanmu.plist */,
+				01881BDB1C94F3440056E1B6 /* Sina.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				01A26D981C88258000554FD8 /* LaunchScreen.storyboard in Resources */,
 				01EDD8531C8ECD32000DC693 /* ListTableViewCell.xib in Resources */,
 				01261AFD1C89229E004AE8A0 /* Main.plist in Resources */,
+				01881BDC1C94F3440056E1B6 /* Sina.plist in Resources */,
 				01BCE4B51C90428000CD763F /* Set.storyboard in Resources */,
 				0121AC3F1C8869DC0075515D /* blueArrow.png in Resources */,
 			);

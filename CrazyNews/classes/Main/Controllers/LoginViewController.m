@@ -10,6 +10,7 @@
 #import <BmobSDK/Bmob.h>
 #import "CreateViewController.h"
 #import "MainViewController.h"
+#import <WeiboSDK.h>
 
 @interface LoginViewController ()<pushViewControllerDelegate>
 
@@ -29,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"55"]];
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 100, 40);
     [backBtn setTitle:@"个人" forState:UIControlStateNormal];

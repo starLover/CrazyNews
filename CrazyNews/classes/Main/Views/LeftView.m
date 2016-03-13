@@ -38,7 +38,7 @@ static BOOL night = NO;
 }
 - (void)configView{
     UIWindow *wido = [[UIApplication sharedApplication].delegate window];
-
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.blackView.alpha = 0.5;
         self.whiteView.frame = CGRectMake(0, 0, kScreenWidth - 100, kScreenHeight);
@@ -53,7 +53,6 @@ static BOOL night = NO;
     
     //登陆头像 按钮
     UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 50, 50)];
-    
     
     headImage.image = [UIImage imageNamed:@"avatar_m"];
     headImage.clipsToBounds = YES;
@@ -106,7 +105,7 @@ static BOOL night = NO;
             [btn setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(goToNext:) forControlEvents:UIControlEventTouchUpInside];
             [self.whiteView addSubview:btn];
-    }
+        }
     }
     return _whiteView;
 }
@@ -205,11 +204,11 @@ static BOOL night = NO;
     }];
 }
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

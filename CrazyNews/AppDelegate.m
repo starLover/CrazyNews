@@ -23,10 +23,14 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
+#import <AFHTTPSessionManager.h>
+
+#import "LeftView.h"
+
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WeiboSDKDelegate, WXApiDelegate>
 
 @end
 
@@ -67,7 +71,7 @@
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
                  [appInfo SSDKSetupSinaWeiboByAppKey:@"3227801201"
                                            appSecret:@"3cb469382fb96b96c28147feef55035d"
-                                         redirectUri:@"http://www.baidu.com"
+                                         redirectUri:@"https://api.weibo.com/oauth2/default.html"
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
@@ -224,6 +228,44 @@
     }
 }
 
+
+-(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+    
+}
+-(void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+    if ([response isKindOfClass:WBAuthorizeResponse.class])
+    {
+        NSString *title = NSLocalizedString(@"认证结果", nil);
+        NSString *message = [NSString stringWithFormat:@"%@: %d\nresponse.userId: %@\nresponse.accessToken: %@\n%@: %@\n%@: %@", NSLocalizedString(@"响应状态", nil), (int)response.statusCode,[(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken],  NSLocalizedString(@"响应UserInfo数据", nil), response.userInfo, NSLocalizedString(@"原请求UserInfo数据", nil), response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"确定", nil)
+                                              otherButtonTitles:nil];
+        
+        NSString *wbtoken = [(WBAuthorizeResponse *)response accessToken];
+        NSString *wbCurrentUserID = [(WBAuthorizeResponse *)response userID];
+        NSDate *wbRefreshToken = [(WBAuthorizeResponse *)response expirationDate];
+        NSLog(@"%@,%@,%@", wbtoken, wbCurrentUserID, wbRefreshToken);
+       
+        [alert show];
+
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
+    [sessionManager GET:@"https://api.weibo.com/2/users/show.json" parameters:@{@"access_token":wbtoken, @"uid":wbCurrentUserID} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+}
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WeiboSDK handleOpenURL:url delegate:self] | [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WeiboSDK handleOpenURL:url delegate:self] | [WXApi handleOpenURL:url delegate:self];
+}
 
 
 @end

@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
 //数据管理器（工具）类,它是用来管理数据的：增、删、改、查
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 //数据模型（工具）类，他只是提供数据模型，他并不是数据库
